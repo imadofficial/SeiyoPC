@@ -11,5 +11,8 @@ This game allows you to experience ALL the charts available in Seiyo today but w
 ## Will this be used even when the assignment is over?
 Well, it depends on what the response this gets from the community. You are going to be able to view current set scores but you aren't able to publish new ones on SeiyoPC. This is due to its complexity & lack of anti-cheat to prevent RAM/proxy abuse.
 
+## But Imad, isn't Seiyo designed for touch screens?
+You're right but there is no way to actually integrate that with Pygame. So there will be an EXE attached to SeiyoPC that converts the charts from Seiyo to be playable on SeiyoPC. **Do keep in mind that hold notes WILL NOT behave similarly. If you're used to the current way of hold notes, refrain from using this version.**
+
 ## Required Python libraries to function:
 - [PyGame 2.3.0](https://pypi.org/project/pygame/)
