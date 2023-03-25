@@ -8,5 +8,8 @@ This game allows you to experience ALL the charts available in Seiyo today but w
 | [Windows 8.1+ (x64)](#) | Linux (x64) | macOS 10.9+ |
 | ------------- | ------------- | ------------- |
 
+## Will this be used even when the assignment is over?
+Well, it depends on what the response this gets from the community. You are going to be able to view current set scores but you aren't able to publish new ones on SeiyoPC. This is due to its complexity & lack of anti-cheat to prevent RAM/proxy abuse.
+
 ## Required Python libraries to function:
 - [PyGame 2.3.0](https://pypi.org/project/pygame/)
