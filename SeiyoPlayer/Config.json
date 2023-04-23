@@ -1,0 +1,8 @@
+{
+    "CurrentVersion": 1.06,
+    "Build": 13,
+    "Edition": "Pre-Assignment",
+
+    "Metal": true,
+    "OpenGL": true
+}
