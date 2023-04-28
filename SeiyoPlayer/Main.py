@@ -1,8 +1,9 @@
 import pygame
 from pygame import mixer
-import tkinter as Tk
+import tkinter as tk
 from tkinter import messagebox
-import json, math
+import json, math, os
+from pyvidplayer import Video
 
 Timer = pygame.time.Clock()
 
@@ -20,7 +21,7 @@ class CleDeClavier():
         self.couleur1 = couleur1
         self.couleur2 = couleur2
         self.cle = cle
-        self.rect = pygame.Rect(self.x,self.y,100,20)
+        self.rect = pygame.Rect(self.x,self.y,100,80)
         self.handled = False
 
 class Background(pygame.sprite.Sprite):
@@ -66,7 +67,12 @@ Artist = SmolFont.render('Sakuzyo', True, (255, 255, 255))
 
 Difficulty = BigFont.render('Insane 14.8', True, (255, 255, 255))
 Scorecount = BigFont.render('0000000', True, (255, 255, 255))
-ComboCount = SmolFont.render('Combo 0', True, (255, 255, 255))
+ComboCount = SmolFont.render('Hits 0', True, (255, 255, 255))
+
+Scoremessage = BigFont.render(f'Score: {Score}, Combo: {Combo}!', True, (255, 255, 255))
+
+ScoreMessageRect = Scoremessage.get_rect()
+ScoreMessageRect.center = (0, 0)
 
 SongRect = SongName.get_rect()
 SongRect = (50, 640)
@@ -90,7 +96,7 @@ image = pygame.image.load('./ChartData/Background.png')
 Pointsperhit = 0
 
 Config = json.load(open('Config.json'))
-pygame.display.set_caption(f'SeiyoPC v{Config["CurrentVersion"]} <{Config["Edition"]} | Metal Compatible>')
+pygame.display.set_caption(f'SeiyoPC-Player v{Config["CurrentVersion"]} <{Config["Edition"]} | Metal Compatible>')
 
 with open('./ChartData/Chart.txt', 'r') as file:
     content = file.read()
@@ -103,6 +109,13 @@ SongName = BigFont.render(f'{Config["Name"]}', True, (255, 255, 255))
 Artist = SmolFont.render(f'{Config["Artist"]}', True, (255, 255, 255))
 Difficulty = BigFont.render(f'{Config["Difficulty"]}', True, (255, 255, 255))
 #endregion
+
+def check_if_finished():
+    if pygame.mixer.music.get_busy():
+        return False
+    else:
+        return True
+
 
 while True:
     screen.fill((0,0,0))
@@ -129,9 +142,27 @@ while True:
             pygame.draw.rect(screen, note.couleur2, note.rect)
             note.handled = True
 
+    Config = json.load(open('./ChartData/ChartConfig.json'))
+
     for rect in rects:
         pygame.draw.rect(screen,(200,0,0), rect)
-        rect.y += 20
+        rect.y += Config["ScrollSpeed"]
+        if check_if_finished() == True:
+            
+            data = {
+                "Score": Score,
+                "Combo": Combo
+                   }
+            
+            json_string = json.dumps(data)
+
+            with open("Result.json", "w") as outfile:
+                outfile.write(json_string)
+
+            #messagebox.showinfo("Goed gedaan!", f"Je score is: {Score} met een combo van {Combo}!")
+
+            screen.blit(Scoremessage, ScoreMessageRect)
+            os.system('exit')
     
         for key in Cles:
             if(key.rect.colliderect(rect)and not key.handled):
@@ -140,7 +171,7 @@ while True:
                 Score += Pointsperhit
                 Combo += 1
                 Scorecount = BigFont.render(f'{Score}', True, (255, 255, 255))
-                ComboCount = SmolFont.render(f'Combo {Combo}', True, (255, 255, 255))
+                ComboCount = SmolFont.render(f'Hits {Combo}', True, (255, 255, 255))
                 break
     
 
