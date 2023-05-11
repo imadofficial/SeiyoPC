@@ -145,7 +145,7 @@ while True:
     Config = json.load(open('./ChartData/ChartConfig.json'))
 
     for rect in rects:
-        pygame.draw.rect(screen,(200,0,0), rect)
+        pygame.draw.rect(screen,(0, 150, 255), rect)
         rect.y += Config["ScrollSpeed"]
         if check_if_finished() == True:
             
@@ -158,10 +158,7 @@ while True:
 
             with open("Result.json", "w") as outfile:
                 outfile.write(json_string)
-
-            #messagebox.showinfo("Goed gedaan!", f"Je score is: {Score} met een combo van {Combo}!")
-
-            screen.blit(Scoremessage, ScoreMessageRect)
+                
             os.system('exit')
     
         for key in Cles:
