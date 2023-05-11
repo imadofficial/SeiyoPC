@@ -5,8 +5,8 @@ A school project based on my mobile-rhythm game Seiyo with similar gameplay but 
 This game allows you to experience ALL the charts available in Seiyo today but with a twist designed for computers. All online functionality is available as well along with Cloud Save which allows you to cross-save your scores between all of your devices. **(This feature requires Seiyo to be updated to v1.0 (CS2.3))**
 
 **Latest builds:**
-| [Windows 8.1+ (x64)](#) | Linux (Soon) | macOS (Soon) |
-| ------------- | ------------- | ------------- |
+| [Windows 8.1+ (x64)](#) | Linux & MacOS (TBA) |
+| ------------- | ------------- |
 
 ## Will this be used even when the assignment is over?
 Well, it depends on what the response this gets from the community. You are going to be able to view current set scores but you aren't able to publish new ones on SeiyoPC. This is due to its complexity & lack of anti-cheat to prevent RAM/proxy abuse.
